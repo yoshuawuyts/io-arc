@@ -1,0 +1,21 @@
+[package]
+name = "io-arc"
+version = "1.0.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yoshuawuyts/io-arc"
+documentation = "https://docs.rs/io-arc"
+description = "Proof of concept Arc with IO trait delegation"
+readme = "README.md"
+edition = "2018"
+keywords = []
+categories = []
+authors = [
+    "Yoshua Wuyts <yoshuawuyts@gmail.com>"
+]
+
+[features]
+
+[dependencies]
+futures-io = "0.3.4"
+
+[dev-dependencies]
