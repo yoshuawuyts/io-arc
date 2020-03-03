@@ -51,19 +51,6 @@ where
     }
 }
 
-// impl<T> BufRead for IoArc<T>
-// where
-//     for<'a> &'a T: BufRead,
-// {
-//     fn consume(&mut self, amt: usize) {
-//         (&mut &*self.0).consume(amt)
-//     }
-
-//     fn fill_buf(&mut self) -> io::Result<&[u8]> {
-//         (&*self.0).fill_buf()
-//     }
-// }
-
 impl<T> Write for IoArc<T>
 where
     for<'a> &'a T: Write,
@@ -110,19 +97,6 @@ where
         Pin::new(&mut &*self.0).poll_close(cx)
     }
 }
-
-// impl<T> futures_io::AsyncBufRead for IoArc<T>
-// where
-//     for<'a> &'a T: AsyncBufRead,
-// {
-//     fn poll_fill_buf(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<io::Result<&[u8]>> {
-//         // Pin::new(&mut &*self.0).poll_fill_buf(cx)
-//         todo!();
-//     }
-//     fn consume(self: Pin<&mut Self>, amt: usize) {
-//         AsyncBufRead::consume(Pin::new(&mut &*self.0), amt)
-//     }
-// }
 
 impl<T: Default> Default for IoArc<T> {
     fn default() -> Self {
