@@ -25,6 +25,7 @@
 
 use futures_io::{AsyncRead, AsyncWrite};
 use std::io::{self, prelude::*};
+use std::ops::Deref;
 use std::pin::Pin;
 use std::sync::Arc;
 use std::task::{Context, Poll};
@@ -39,6 +40,14 @@ impl<T> IoArc<T> {
     /// Create a new instance of IoArc.
     pub fn new(data: T) -> Self {
         Self(Arc::new(data))
+    }
+}
+
+impl<T> Deref for IoArc<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 
