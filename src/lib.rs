@@ -33,7 +33,7 @@ use std::borrow::Borrow;
 
 /// A variant of `Arc` that delegates IO traits if available on `&T`.
 #[derive(Debug)]
-pub struct IoArc<T>(Arc<T>);
+pub struct IoArc<T>(pub Arc<T>);
 
 impl<T> IoArc<T> {
     /// Create a new instance of IoArc.
